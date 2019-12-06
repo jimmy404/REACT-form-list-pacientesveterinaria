@@ -8,8 +8,10 @@ class NuevaCita extends Component {
             fecha : '',
             hora : '',
             sintomas : ''
-        }
+        },
+        error: false
     }
+    // Cuando el usuario escribe en los inputs
             handleChange = e => {
             // Colocar lo que el usuario escribe en el state
             this.setState({
@@ -19,6 +21,19 @@ class NuevaCita extends Component {
                 }
             })
             }
+        // Cuando el usuario envia el formulario
+
+                handleSubmit = e => {
+                    e.preventDefault();
+                    const { mascota, propietario, fecha, hora, sintomas } = this.state.cita;
+                    if(mascota === '' || propietario === '' || fecha === '' || hora === '' || sintomas === ''){
+                            this.setState({
+                                error:true
+                            });
+                            return;
+                    }
+
+                }
 
     render(){
         return(
@@ -27,7 +42,12 @@ class NuevaCita extends Component {
                     <h2 className="card-title text-center mb-5">
                         Llenar formulario para crear nueva cita
                     </h2>
-                    <form>
+
+                    document.querySelector('form').addEventListener('submit')
+
+                    <form
+                        onSubmit={this.handleSubmit}
+                    >
                         <div className="form-group row">
                             <label className="col-sm-4 col-lg-2 col-form-label">
                                 Nombre mascota

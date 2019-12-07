@@ -9,6 +9,23 @@ class App extends Component {
   state ={
     citas: []
   }
+
+  // Cuando la app carga
+  componentDidMount(){
+    const citasLS = localStorage.getItem('citas');
+    if(citasLS){
+      this.setState({
+        citas: JSON.parse(citasLS)
+      })
+    }
+  }
+  //Cuando eliminamos o eliminamos una nueva cita
+  componentDidUpdate(){
+    localStorage.setItem('citas', JSON.stringify(this.state.citas));
+  }
+
+
+
   crearNuevaCita = datos => {
     //Copiar el state actual
     const citas = [...this.state.citas, datos];

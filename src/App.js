@@ -17,7 +17,7 @@ class App extends Component {
       citas
     })
   }
-  // Elimina las citas del state
+  // Elimina citas del state
 eliminarCita = id => {
   //Tomar una copia del state
     const citasActuales = [...this.state.citas];
